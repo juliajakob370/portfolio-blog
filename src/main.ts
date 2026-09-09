@@ -1,7 +1,11 @@
 import './style.css'
 
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
-<div>
-<h1>Hi!</h1>
-</div>
+<body>
+    <div class="wii-bezel">
+        <div class="wii-screen" id="wii-screen">
+            
+        </div>
+    </div>
+</body>
 `
