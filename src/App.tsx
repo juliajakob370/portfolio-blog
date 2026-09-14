@@ -1,30 +1,28 @@
 import React, { useState } from 'react';
-// @ts-ignore
 import WiiBar from './components/WiiBar.tsx'
+import Landing from './pages/Landing';
+import Experience from './pages/Experience';
+import Projects from './pages/Projects';
+import Blog from './pages/Blog';
+import type { View } from './types';
 import './styles/style.css';
 
-// Define the type for our valid view/page names
-type View = 'home' | 'experience' | 'projects' | 'blog';
-
-export default function App() {
+export function App() {
     const [activeView, setActiveView] = useState<View>('home');
 
     // Function to render different pages depending on active state
     const renderView = () => {
         switch (activeView) {
             case 'experience':
-                return <div className="view-content">Experience Page Content</div>;
+                return <Experience/>;
             case 'projects':
-                return <div className="view-content">Projects Page Content</div>;
+                return <Projects/>;
             case 'blog':
-                return <div className="view-content">Blog / Messages Page Content</div>;
+                return <Blog/>;
             case 'home':
             default:
-                return (
-                    <div className="view-content">
-
-                    </div>
-                );
+                // @ts-ignore
+                return <Landing setActiveView={setActiveView}/>;
         }
     };
 
@@ -37,7 +35,7 @@ export default function App() {
                 </main>
 
                 {/* Compact Bottom Navigation Bar */}
-                <WiiBar activeView={activeView} setActiveView={setActiveView} />
+                <WiiBar activeView={activeView} setActiveView={setActiveView}/>
             </div>
         </div>
     );
