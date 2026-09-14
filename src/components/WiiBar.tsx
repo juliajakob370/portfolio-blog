@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Sun, Moon, Volume2, Home } from 'lucide-react';
 
-export default function WiiBar({ activeView, setActiveView }) {
+// @ts-ignore
+export default ({activeView, setActiveView}) => {
     const [time, setTime] = useState(new Date());
 
     useEffect(() => {

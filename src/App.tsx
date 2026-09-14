@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 // @ts-ignore
-import WiiBar from './components/WiiBar.jsx'
+import WiiBar from './components/WiiBar.tsx'
 import './styles/style.css';
 
 // Define the type for our valid view/page names
