@@ -1,69 +1,84 @@
-import React, { useState, useEffect } from 'react';
-import { Sun, Moon, Volume2, Home } from 'lucide-react';
+import React from 'react';
 
-// @ts-ignore
-export default ({activeView, setActiveView}) => {
-    const [time, setTime] = useState(new Date());
-
-    useEffect(() => {
-        const timer = setInterval(() => setTime(new Date()), 1000);
-        return () => clearInterval(timer);
-    }, []);
-
-    const formattedTime = time.toLocaleTimeString([], {
-        hour: '2-digit',
-        minute: '2-digit'
-    });
-
-    const formattedDate = time.toLocaleDateString([], {
-        weekday: 'short',
-        month: 'numeric',
-        day: 'numeric'
-    });
-
-    return (
-        <div className="wii-bar">
-            {/* Left Section: Controls */}
-            <div className="wii-bar-left">
-                {/* Light/Dark Toggle Switch Placeholder */}
-                {/* TODO: wire up theme toggle */}
-                <button
-                    className="wii-toggle-btn"
-                    title="Toggle Theme (Placeholder)"
-                    onClick={() => {}}
-                >
-                    <Sun size={14} className="toggle-icon light" />
-                    <Moon size={14} className="toggle-icon dark" />
-                    <div className="toggle-thumb" />
-                </button>
-
-                {/* Audio Circle Button Placeholder */}
-                {/* TODO: wire up audio toggle */}
-                <button
-                    className="wii-circle-btn"
-                    title="Toggle Music (Placeholder)"
-                    onClick={() => {}}
-                >
-                    <Volume2 size={18} color="#9d4edd" />
-                </button>
-            </div>
-
-            {/* Center Section: Compact Time & Date */}
-            <div className="wii-time-container">
-                <span className="wii-time-text">{formattedTime}</span>
-                <span className="wii-date-text">{formattedDate}</span>
-            </div>
-
-            {/* Right Section: Home Button */}
-            <div className="wii-bar-right">
-                <button
-                    className={`wii-circle-btn home-btn ${activeView === 'home' ? 'active' : ''}`}
-                    onClick={() => setActiveView('home')}
-                    title="Home Menu"
-                >
-                    <Home size={20} color="#7b2cbf" />
-                </button>
-            </div>
-        </div>
-    );
+interface WiiBarProps {
+    timeText?: string;
+    dateText?: string;
 }
+
+export const WiiBar: React.FC<WiiBarProps> = ({
+                                                  timeText = "12:00 PM",
+                                                  dateText = "Mon 09/14"
+                                              }) => {
+    return (
+        <footer className="wii-bar-wrapper">
+            {/* SVG Background Path providing the classic Wii curve */}
+            <svg
+                className="wii-bar-svg"
+                viewBox="0 0 1000 100"
+                preserveAspectRatio="none"
+                aria-hidden="true"
+            >
+                <defs>
+                    <linearGradient id="wiiBarGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" stopColor="var(--bar-grad-start)" />
+                        <stop offset="100%" stopColor="var(--bar-grad-end)" />
+                    </linearGradient>
+                </defs>
+
+                <path
+                    d="M 0,0
+             L 280,0
+             C 320,0 330,55 370,55
+             L 630,55
+             C 670,55 680,0 720,0
+             L 1000,0
+             L 1000,100
+             L 0,100 Z"
+                    fill="url(#wiiBarGrad)"
+                />
+
+                <path
+                    d="M 0,1
+             L 280,1
+             C 320,1 330,56 370,56
+             L 630,56
+             C 670,56 680,1 720,1
+             L 1000,1"
+                    fill="none"
+                    stroke="var(--purple-700)"
+                    strokeWidth="2"
+                />
+            </svg>
+
+            {/* Bar Content Overlay */}
+            <div className="wii-bar-content">
+                {/* LEFT GROUP */}
+                <div className="wii-bar-left">
+                    <div className="wii-toggle-btn">
+                        <span className="toggle-icon">★</span>
+                        <div className="toggle-thumb" />
+                    </div>
+
+                    <button className="wii-circle-btn" aria-label="Audio">
+                        <span style={{ color: 'var(--purple-300)', fontSize: '0.8rem' }}>♪</span>
+                    </button>
+                </div>
+
+                {/* CENTER CLOCK DISPLAY */}
+                <div className="wii-bar-center">
+                    <div className="wii-time-text">{timeText}</div>
+                    <div className="wii-date-text">{dateText}</div>
+                </div>
+
+                {/* RIGHT GROUP */}
+                <div className="wii-bar-right">
+                    <button className="wii-circle-btn" aria-label="Home">
+                        <span style={{ color: 'var(--purple-300)', fontSize: '0.8rem' }}>⌂</span>
+                    </button>
+                </div>
+            </div>
+        </footer>
+    );
+};
+
+export default WiiBar;

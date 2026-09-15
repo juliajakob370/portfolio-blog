@@ -1,5 +1,9 @@
-import React from "react";
+import type { View } from '../types';
 
-export default function Landing() {
-    return <div className="viewContent">Landing Page Content</div>;
+interface LandingProps {
+    setActiveView: (view: View) => void;
+}
+
+export default function Landing({ setActiveView }: LandingProps) {
+    return null;
 }
