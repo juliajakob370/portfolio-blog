@@ -1,4 +1,6 @@
 import React from 'react';
+import { IoMdHome } from "react-icons/io";
+import {FaVolumeUp} from "react-icons/fa";
 
 interface WiiBarProps {
     timeText?: string;
@@ -54,14 +56,12 @@ export const WiiBar: React.FC<WiiBarProps> = ({
             <div className="wii-bar-content">
                 {/* LEFT GROUP */}
                 <div className="wii-bar-left">
+                    <button className="wii-circle-btn" aria-label="Audio">
+                        <FaVolumeUp style={{ color: 'var(--purple-300)', fontSize: 'xxx-large'}}/>
+                    </button>
                     <div className="wii-toggle-btn">
-                        <span className="toggle-icon">★</span>
                         <div className="toggle-thumb" />
                     </div>
-
-                    <button className="wii-circle-btn" aria-label="Audio">
-                        <span style={{ color: 'var(--purple-300)', fontSize: '0.8rem' }}>♪</span>
-                    </button>
                 </div>
 
                 {/* CENTER CLOCK DISPLAY */}
@@ -73,7 +73,7 @@ export const WiiBar: React.FC<WiiBarProps> = ({
                 {/* RIGHT GROUP */}
                 <div className="wii-bar-right">
                     <button className="wii-circle-btn" aria-label="Home">
-                        <span style={{ color: 'var(--purple-300)', fontSize: '0.8rem' }}>⌂</span>
+                        <IoMdHome style={{ color: 'var(--purple-300)', fontSize: 'xxx-large' }} />
                     </button>
                 </div>
             </div>
