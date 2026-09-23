@@ -1,10 +1,4 @@
-@font-face {
-    font-family: 'Google Sans Code Variable';
-    font-style: normal;
-    font-display: swap;
-    font-weight: 300 800;
-    src: url(https://cdn.jsdelivr.net/fontsource/fonts/google-sans-code:vf@latest/latin-wght-normal.woff2) format('woff2-variations');
-}
+
 
 /* ==========================================================================
    Reset
@@ -221,4 +215,94 @@
     margin-top: 25px;
     padding-right: 55px;
     letter-spacing: 0.3px;
+}
+
+/* ==========================================================================
+   Landing Page
+   ========================================================================== */
+
+.landing {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+/* Top half: hero */
+.wii-hero {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    padding: 60px 32px;
+}
+
+.wii-hero-text {
+    max-width: 60%;
+}
+
+.wii-hero-title {
+    font-size: 1.6rem;
+    margin: 0 0 8px 0;
+}
+
+.cursor {
+    animation: blink 1s step-end infinite;
+    font-size: xx-large;
+    font-weight: normal;
+}
+
+@keyframes blink {
+    50% { opacity: 0; }
+}
+
+.wii-hero-blurb {
+    font-size: 0.95rem;
+    opacity: 0.8;
+    margin: 0;
+}
+
+.wii-hero-image-wrapper {
+    flex-shrink: 0;
+}
+
+.wii-hero-image {
+    width: 240px;
+    height: 240px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #fff;
+}
+
+/* Bottom half: channel row */
+.channel-row {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    padding: 0 32px 24px;
+}
+
+.channel-tile {
+    flex: 1;
+    max-width: 220px;
+    aspect-ratio: 4 / 3;
+    border-radius: 20px;
+    border: none;
+    background: #cfd8dc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.15s ease;
+}
+
+.channel-tile:hover {
+    transform: scale(1.04);
+}
+
+.channel-label {
+    font-weight: 600;
+    font-size: 1.05rem;
 }
